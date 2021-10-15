@@ -23,7 +23,7 @@ steps:
 #     tags: 'latest'
 - task: HelmInstaller@0
   inputs:
-    helmVersion: 'latest'
+    helmVersion: '3.7.1'
     installKubectl: true
     kubectlVersion: '1.19.0'
 - task: Bash@3
