@@ -14,13 +14,13 @@ steps:
   inputs:
     containerRegistry: 'azure-container-registry'
     command: 'login'
-# - task: Docker@2
-#   inputs:
-#     containerRegistry: 'azure-container-registry'
-#     repository: 'example'
-#     command: 'buildAndPush'
-#     Dockerfile: '**/Dockerfile'
-#     tags: 'latest'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'azure-container-registry'
+    repository: 'example'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: 'latest'
 - task: HelmInstaller@0
   displayName: Install Helm 
   inputs:
@@ -44,6 +44,4 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      # Write your commands here
-      
-      echo 'Hello world'
+      helm install liferay -f $(Build.SourcesDirectory)/openshift/helm-liferay/values.yaml
