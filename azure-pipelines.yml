@@ -30,4 +30,4 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      helm --version 
+      helm version 
