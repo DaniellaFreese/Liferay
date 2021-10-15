@@ -3,8 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- main
+# trigger:
+# - main
 
 pool:
   vmImage: ubuntu-latest
@@ -22,17 +22,28 @@ steps:
 #     Dockerfile: '**/Dockerfile'
 #     tags: 'latest'
 - task: HelmInstaller@0
+  displayName: Install Helm 
   inputs:
     helmVersion: '3.7.1'
     installKubectl: true
     kubectlVersion: '1.19.0'
+- task: Bash@3
+  displayName: Validate Helm Version 
+  inputs:
+    targetType: 'inline'
+    script: |
+      helm version 
 - task: oc-setup@2
+  displayName: Install OCP and login to cluster
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OCP Cluster'
     version: '4.8.0'
 - task: Bash@3
+  displayName: Run Helm Chart 
   inputs:
     targetType: 'inline'
     script: |
-      helm version 
+      # Write your commands here
+      
+      echo 'Hello world'
