@@ -26,6 +26,11 @@ steps:
     helmVersion: '3.7.1'
     installKubectl: true
     kubectlVersion: '1.19.0'
+- task: oc-setup@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OCP Cluster'
+    version: '4.8.0'
 - task: Bash@3
   inputs:
     targetType: 'inline'
