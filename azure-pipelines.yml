@@ -36,13 +36,19 @@ steps:
   displayName: Build Docker Image 
   inputs:
     containerRegistry: 'azure-container-registry'
-    repository: 'example'
+    repository: 'example/liferay'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: 'latest'
+# - task: Bash@3
+#   displayName: Run Helm Chart 
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       helm install liferay -f $(Build.SourcesDirectory)/openshift/helm-liferay/values.yaml
 - task: Bash@3
   displayName: Run Helm Chart 
   inputs:
     targetType: 'inline'
     script: |
-      helm install liferay -f $(Build.SourcesDirectory)/openshift/helm-liferay/values.yaml
+      helm ls
